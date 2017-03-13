@@ -8,13 +8,16 @@ import java.util.List;
 
 public interface UserService {
     void save(User user);
+
     void saveRecord(Record record);
+
     User findByUsername(String username);
+
     List<Record> findByUser(User user);
 
-    void deleteuser(User user);
-
     void deleteRecord(Record record);
+
     Record findRecord(Long id);
-    Record findRecord(User user,Long id);
+
+    Record findRecord(User user, Long id);
 }

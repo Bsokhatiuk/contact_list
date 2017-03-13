@@ -47,11 +47,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteuser(User user) {
-        userRepository.delete(user);
-    }
-
-    @Override
     public void deleteRecord(Record record) {
         recordRepository.delete(record);
     }
@@ -63,6 +58,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Record findRecord(User user, Long id) {
-        return recordRepository.findByUserAndId(user,id);
+        return recordRepository.findByUserAndId(user, id);
     }
 }

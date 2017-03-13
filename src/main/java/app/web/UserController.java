@@ -96,9 +96,9 @@ public class UserController {
                                       String logout) {
         if (user == null) user = userService.findByUsername(name);
         model.addAttribute("newRecordForm", new Record());
-        Record record =userService.findRecord(user,id);
-        if (record!=null)
-        model.addAttribute("record",record);
+        Record record = userService.findRecord(user, id);
+        if (record != null)
+            model.addAttribute("record", record);
         return "workflow";
     }
 
@@ -131,8 +131,8 @@ public class UserController {
         recordValidator.validate(record, bindingResult);
 
         if (!bindingResult.hasErrors()) {
-            Record odlrecord= userService.findRecord(id);
-            odlrecord=record;
+            Record odlrecord = userService.findRecord(id);
+            odlrecord = record;
             model.addAttribute("message", "You have been change your contact");
             odlrecord.setUser(user);
             userService.saveRecord(odlrecord);

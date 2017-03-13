@@ -27,7 +27,7 @@ public class RecordValidator implements Validator {
         if (record.getPatronymic().length() < 4 || record.getPatronymic().length() > 32) {
             errors.rejectValue("patronymic", "Size.newRecordForm.patronymic");
         }
-        if (record.getPatronymic().length() < 4 || record.getPatronymic().length() > 32) {
+        if (record.getMobilePhone().length() < 18) {
             errors.rejectValue("mobilePhone", "Size.newRecordForm.mobilePhone");
         }
     }

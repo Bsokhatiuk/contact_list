@@ -24,41 +24,47 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
         <h2>
-            <a onclick="document.forms['logoutForm'].submit()"  class="btn btn-info btn-lg" style="margin-left: 100%">
+            <a onclick="document.forms['logoutForm'].submit()" class="btn btn-info btn-lg" style="margin-left: 100%">
                 <span class="glyphicon glyphicon-log-out"></span> Log out
             </a>
         </h2>
+        <h3>
+            <input type="button" class="btn btn-lg btn-primary" value="Add new contact"
+                   onclick='location.href="/workflow/${pageContext.request.userPrincipal.name}"'/>
+        </h3>
     </c:if>
 </div>
 
 
 <div class="container">
-    <div id="users">
-        <input class="search" placeholder="Search" style="width: 100%"/>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th style="text-align: center">Name</th>
-            <th style="text-align: center">Mobile phone</th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody class="list" >
-        <c:forEach var="record" items="${records}">
+    <div id="users" STYLE="width: 100%">
+        <input class="search form-group" autofocus="true" placeholder="Search" style="width: 100%"/>
+        <table class="table form-group table-hover">
+            <thead class="table form-group">
             <tr>
-                <td class="name">${record.name} ${record.surname} ${record.patronymic}</td>
-                <td class="phone" style="text-align: center">${record.mobilePhone}</td>
-                <spring:url value="/delete/${record.id}" var="deleteUrl" />
-                <spring:url value="/workflow/${pageContext.request.userPrincipal.name}/${record.id}" var="updateUrl" />
-                <td style="text-align: center">   <button class="btn btn-primary"
-                               onclick="location.href='${updateUrl}'">Update</button></td>
-                <td style="text-align: center">   <button class="btn btn-danger"
-                               onclick="location.href=('${deleteUrl}')">Delete</button></td>
+                <th class="sort" data-sort="name" style="text-align: center">Name</th>
+                <th style="text-align: center">Mobile phone</th>
+                <th></th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="list form-group">
+            <c:forEach var="record" items="${records}">
+                <spring:url value="/workflow/${pageContext.request.userPrincipal.name}/${record.id}" var="updateUrl"/>
+                <tr>
+                    <td onclick="location.href='${updateUrl}'"
+                        class="name">${record.name} ${record.surname} ${record.patronymic}</td>
+                    <td onclick="location.href='${updateUrl}'" class="phone"
+                        style="text-align: center">${record.mobilePhone}</td>
+                    <spring:url value="/delete/${record.id}" var="deleteUrl"/>
+                    <td style="text-align: center; width: 10%">
+                        <button class="btn btn-danger"
+                                onclick="location.href=('${deleteUrl}')">Delete
+                        </button>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>

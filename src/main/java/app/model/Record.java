@@ -29,6 +29,16 @@ public class Record {
     public Record() {
     }
 
+
+    public Record(String name, String surname, String patronymic, String mobilePhone) {
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+        this.mobilePhone = mobilePhone;
+    }
+
+
+
     public Long getId() {
         return id;
     }
