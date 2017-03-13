@@ -9,6 +9,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Component
 public class UserValidator implements Validator {
     @Autowired
@@ -22,9 +25,15 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         User user = (User) o;
+        Pattern pattern = Pattern.compile("[^A-Za-z0-9]");
+        Matcher matcher = pattern.matcher(user.getUsername());
+        ;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
         if (user.getUsername().length() < 2 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");
+        }
+        if (matcher.find()) {
+            errors.rejectValue("username", "Invalid.userForm.username");
         }
 
         if (user.getName().length() < 5 || user.getName().length() > 32) {

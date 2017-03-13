@@ -109,7 +109,7 @@
             <input type="hidden" name="username" id="username" value="${pageContext.request.userPrincipal.name}"/>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         </div>
-        >
+
     </form:form>
 </div>
 <!-- /container -->
